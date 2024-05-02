@@ -171,6 +171,10 @@ return { -- LSP Configuration & Plugins
 			-- But for many setups, the LSP (`tsserver`) will work just fine
 			-- tsserver = {},
 			--
+			tailwindcss = {
+				filetypes_exclude = { "markdown" },
+				filetypes_include = {},
+			},
 
 			lua_ls = {
 				-- cmd = {...},
