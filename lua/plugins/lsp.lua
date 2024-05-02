@@ -142,6 +142,15 @@ return { -- LSP Configuration & Plugins
 			end,
 		})
 
+		vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+			underline = true,
+			virtual_text = {
+				spacing = 5,
+				severity_limit = "Warning",
+			},
+			update_in_insert = true,
+		})
+
 		-- LSP servers and clients are able to communicate to each other what features they support.
 		--  By default, Neovim doesn't support everything that is in the LSP specification.
 		--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
@@ -159,17 +168,20 @@ return { -- LSP Configuration & Plugins
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 		local servers = {
-			-- clangd = {},
-			-- gopls = {},
-			-- pyright = {},
-			-- rust_analyzer = {},
+			rust_analyzer = {},
 			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 			--
 			-- Some languages (like typescript) have entire language plugins that can be useful:
 			--    https://github.com/pmizio/typescript-tools.nvim
 			--
 			-- But for many setups, the LSP (`tsserver`) will work just fine
-			-- tsserver = {},
+			tsserver = {
+				root_dir = function(fname)
+					local util = require("lspconfig.util")
+					return util.root_pattern(".git")(fname)
+						or util.root_pattern("package.json", "tsconfig.json", "jsconfig.json")(fname)
+				end,
+			},
 			--
 			tailwindcss = {
 				filetypes_exclude = { "markdown" },
