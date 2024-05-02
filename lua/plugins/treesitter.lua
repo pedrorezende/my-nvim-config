@@ -1,6 +1,9 @@
 return { -- Highlight, edit, and navigate code
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
+	dependencies = {
+		"nwindwp/nvim-ts-autotag",
+	},
 	opts = {
 		ensure_installed = { "bash", "c", "html", "lua", "luadoc", "markdown", "vim", "vimdoc" },
 		-- Autoinstall languages that are not installed
@@ -11,6 +14,12 @@ return { -- Highlight, edit, and navigate code
 			--  If you are experiencing weird indenting issues, add the language to
 			--  the list of additional_vim_regex_highlighting and disabled languages for indent.
 			additional_vim_regex_highlighting = { "ruby" },
+		},
+		autotag = {
+			enable = true,
+			enable_rename = true,
+			enable_close = true,
+			enable_close_on_slash = true,
 		},
 		indent = { enable = true, disable = { "ruby" } },
 	},
