@@ -22,6 +22,7 @@ map("n", "b0", "<Cmd>BufferLast<CR>", opts)
 map("n", "bp", "<Cmd>BufferPin<CR>", opts)
 -- Close buffer
 map("n", "bd", "<Cmd>BufferClose<CR>", opts)
+map("n", "bD", "<Cmd>BufferClose!<CR>", opts)
 map("n", "bP", "<Cmd>BufferCloseAllButPinned<CR>", opts)
 
 -- Wipeout buffer
