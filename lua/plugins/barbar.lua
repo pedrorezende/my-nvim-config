@@ -7,6 +7,7 @@ map("n", "L", "<Cmd>BufferNext<CR>", opts)
 -- Re-order to previous/next
 map("n", "b,", "<Cmd>BufferMovePrevious<CR>", opts)
 map("n", "b.", "<Cmd>BufferMoveNext<CR>", opts)
+
 -- Goto buffer in position...
 map("n", "b1", "<Cmd>BufferGoto 1<CR>", opts)
 map("n", "b2", "<Cmd>BufferGoto 2<CR>", opts)
@@ -53,6 +54,7 @@ return {
 	end,
 	opts = {
 		animation = false,
+		auto_hide = 0,
 		-- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
 		-- animation = true,
 		-- insert_at_start = true,
