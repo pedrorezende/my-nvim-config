@@ -1,32 +1,38 @@
 --
 -- https://github.com/nvim-lua/kickstart.nvim
 --
-
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.mouse = "a"
-vim.opt.showmode = false
-vim.opt.clipboard = "unnamedplus"
-vim.opt.breakindent = true
-vim.opt.undofile = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.signcolumn = "yes"
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-vim.opt.inccommand = "split"
-vim.opt.cursorline = true
-vim.opt.scrolloff = 10
-vim.opt.hlsearch = true
+
+local opt = vim.opt
+opt.number = true
+opt.autowrite = true
+opt.ignorecase = true
+opt.relativenumber = true
+opt.mouse = "a"
+opt.expandtab = true
+opt.tabstop = 2
+opt.softtabstop = 2
+opt.shiftwidth = 2
+opt.showmode = false
+opt.clipboard = "unnamedplus"
+opt.breakindent = true
+opt.undofile = true
+opt.smartcase = true
+opt.signcolumn = "yes"
+opt.updatetime = 250
+opt.timeoutlen = 300
+opt.splitright = true
+opt.splitbelow = true
+opt.inccommand = "split"
+opt.cursorline = true
+opt.scrolloff = 10
+opt.virtualedit = "block"
+opt.wrap = false -- Disable line wrap
+opt.hlsearch = true
+opt.spelllang = { "en" }
+
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 require("keymaps")
