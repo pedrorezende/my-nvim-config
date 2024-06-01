@@ -182,6 +182,9 @@ return { -- LSP Configuration & Plugins
 						or util.root_pattern("package.json", "tsconfig.json", "jsconfig.json")(fname)
 				end,
 			},
+
+			emmet_language_server = {},
+
 			--
 			tailwindcss = {
 				filetypes_exclude = { "markdown" },
