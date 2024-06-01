@@ -61,7 +61,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	{ import = "plugins" },
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 	{ "numToStr/Comment.nvim", opts = {} }, -- "gc" to comment visual regions/lines
 })
 
@@ -69,5 +68,6 @@ vim.cmd("colorscheme catppuccin")
 require("cmp").setup({
 	formatting = { format = require("tailwindcss-colorizer-cmp").formatter },
 })
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
