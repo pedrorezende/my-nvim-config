@@ -32,6 +32,7 @@ opt.virtualedit = "block"
 opt.wrap = false -- Disable line wrap
 opt.hlsearch = true
 opt.spelllang = { "en" }
+opt.background = "dark"
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
@@ -64,12 +65,13 @@ require("lazy").setup({
 	{ "numToStr/Comment.nvim", opts = {} }, -- "gc" to comment visual regions/lines
 })
 
-vim.cmd("colorscheme catppuccin")
+vim.cmd("colorscheme catppuccin-mocha")
 require("cmp").setup({
 	formatting = { format = require("tailwindcss-colorizer-cmp").formatter },
 })
 
 require("bufferline").setup({})
 
+require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./lua/snippets" } })
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
