@@ -61,6 +61,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			--   },
 			-- },
 			-- pickers = {}
+			defaults = {
+				file_ignore_patterns = { "node_modules" },
+			},
 			extensions = {
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown(),
@@ -74,16 +77,40 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
 		-- See `:help telescope.builtin`
 		local builtin = require("telescope.builtin")
-		vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
-		vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-		vim.keymap.set("n", "<leader>/", builtin.find_files, { desc = "[S]earch [F]iles" })
-		vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
-		vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
-		vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
-		vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-		vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
-		vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-		vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[ ] Find existing buffers" })
+		local map = vim.keymap.set
+
+		map("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
+		map("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
+		map("n", "<leader>/", builtin.find_files, { desc = "[S]earch [F]iles" })
+		map("n", "<leader>ss", builtin.lsp_dynamic_workspace_symbols, { desc = "[S]earch Workspace [S]ymbols" })
+		map("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
+		map("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
+		map("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
+		map("n", "<leader><leader>", builtin.resume, { desc = "[S]earch [R]esume" })
+		map("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+		map("n", "<leader>sb", builtin.buffers, { desc = "[ ] Find existing buffers" })
+		map("n", "<leader>st", builtin.tags, { desc = "[S]earch [T]ags" })
+
+		-- Fuzzy find all the symbols in your current document.
+		--  Symbols are things like variables, functions, types, etc.
+		map("n", "<leader>so", builtin.lsp_document_symbols, { desc = "[D]ocument [S]ymbols" })
+
+		-- Jump to the definition of the word under your cursor.
+		--  This is where a variable was first declared, or where a function is defined, etc.
+		--  To jump back, press <C-t>.
+		map("n", "gd", builtin.lsp_definitions, { desc = "[G]oto [D]efinition" })
+
+		-- Find references for the word under your cursor.
+		map("n", "gr", builtin.lsp_references, { desc = "[G]oto [R]eferences" })
+
+		-- Jump to the implementation of the word under your cursor.
+		--  Useful when your language has ways of declaring types without an actual implementation.
+		map("n", "gi", builtin.lsp_implementations, { desc = "[G]oto [I]mplementation" })
+
+		-- Jump to the type of the word under your cursor.
+		--  Useful when you're not sure what type a variable is and you want to see
+		--  the definition of its *type*, not where it was *defined*.
+		map("n", "gt", builtin.lsp_type_definitions, { desc = "Type [D]efinition" })
 
 		-- Shortcut for searching your Neovim configuration files
 		vim.keymap.set("n", "<leader>sc", function()
