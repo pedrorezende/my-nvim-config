@@ -2,7 +2,7 @@ return { -- Highlight, edit, and navigate code
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	dependencies = {
-		"nwindwp/nvim-ts-autotag",
+		"windwp/nvim-ts-autotag",
 	},
 	opts = {
 		ensure_installed = { "bash", "c", "html", "lua", "luadoc", "markdown", "vim", "vimdoc" },
