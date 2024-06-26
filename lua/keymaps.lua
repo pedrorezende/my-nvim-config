@@ -71,3 +71,22 @@ keymaps.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window
 keymaps.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 keymaps.set("n", "<leader>z", "<cmd>ZenMode<CR>")
+
+-- Oil.nvim
+keymaps.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+-- Expanding or jumping to the next snippet position
+keymaps.set("i", "<C-Tab>", function()
+	local ls = require("luasnip")
+	if ls.expand_or_jumpable() then
+		ls.expand_or_jump()
+	end
+end, { noremap = true, silent = true })
+
+-- Jumping to the previous snippet position
+keymaps.set("i", "<S-Tab>", function()
+	local ls = require("luasnip")
+	if ls.jumpable(-1) then
+		ls.jump(-1)
+	end
+end, { noremap = true, silent = true })
