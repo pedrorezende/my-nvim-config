@@ -12,7 +12,7 @@ return {
 		{
 			"<leader>e",
 			function()
-				require("neo-tree.command").execute({ toggle = true })
+				vim.cmd([[Neotree reveal]])
 			end,
 			desc = "Explorer NeoTree (Root Dir)",
 		},
@@ -43,11 +43,11 @@ return {
 		end
 	end,
 	opts = {
-		sources = { "filesystem", "buffers", "git_status", "document_symbols" },
+		sources = { "buffers", "filesystem", "git_status", "document_symbols" },
 		open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
 		filesystem = {
 			bind_to_cwd = false,
-			follow_current_file = { enabled = true },
+			follow_current_file = { enabled = true, leave_dirs_open = false },
 			use_libuv_file_watcher = true,
 			filtered_items = {
 				visible = true,
@@ -61,6 +61,9 @@ return {
 				},
 				never_show = {},
 			},
+		},
+		buffers = {
+			follow_current_file = { enabled = true },
 		},
 		window = {
 			position = "float",
